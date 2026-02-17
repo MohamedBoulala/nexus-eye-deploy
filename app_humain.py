@@ -141,8 +141,8 @@ if uploaded_file:
         if st.button("EXÉCUTER LE DIAGNOSTIC"):
             with st.spinner("CONFRONTATION..."):
                 time.sleep(1.5)
-                model = joblib.load('models/ia_human_detector.pkl')
-                scaler = joblib.load('models/scaler_human.pkl')
+                model = joblib.load('ia_human_detector.pkl')
+                scaler = joblib.load('scaler_human.pkl')
                 
                 f_scaled = scaler.transform(feat)
                 pred = model.predict(f_scaled)[0]
@@ -155,4 +155,5 @@ if uploaded_file:
                 else:
                     st.markdown(f"<h2 style='color:#00ff88; margin:0;'>✅ SUJET RÉEL IDENTIFIÉ</h2>", unsafe_allow_html=True)
                     st.write(f"Confiance biologique : {prob[0]*100:.2f}%")
+
                 st.markdown('</div>', unsafe_allow_html=True)
